@@ -45,10 +45,8 @@ mongoose
     console.error("Error connecting to MongoDB", err);
   });
 
-// Use task routes
 app.use("/api", taskRouter);
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

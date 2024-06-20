@@ -17,15 +17,12 @@ taskQueue.process(async (job: Bull.Job<JobData>) => {
     await task.save();
     console.log(`Executed task ${task.title} at ${task.executedAt}`);
 
-    // Append log to the log file
     const logEntry = {
       taskName: task.title,
       taskType: task.type,
       executedAt: task.executedAt.toISOString(),
     };
 
-    console.log(logFile);
-    // Read existing logs
     fs.readFile(logFile, "utf8", (readErr, data) => {
       if (readErr && readErr.code !== "ENOENT") {
         console.error("Error reading log file:", readErr);

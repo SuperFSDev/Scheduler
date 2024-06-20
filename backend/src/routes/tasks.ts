@@ -10,14 +10,11 @@ router.post("/tasks", async (req, res) => {
   await task.save();
 
   if (type === "one-time") {
-    console.log("one-time",task._id, cron);
-    console.log("+++Time+++", time)
     taskQueue.add(
       { taskId: task._id },
       { delay: new Date(time).getTime() - Date.now() }
     );
   } else {
-    console.log(task._id, cron);
     taskQueue.add({ taskId: task._id }, { repeat: { cron } });
   }
 

@@ -1,7 +1,7 @@
 import { Schema, model, Document } from "mongoose";
 
 interface ITask extends Document {
-  _id: string; // Add the _id field here
+  _id: string;
   type: string;
   title: string;
   content: string;
