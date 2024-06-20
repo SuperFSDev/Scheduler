@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import "./App.css";
-import { time } from "console";
 
 interface Task {
   _id: string;
@@ -49,8 +48,7 @@ const App: React.FC = () => {
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
   ) => {
-    console.log(e.target.value);
-    setNewTask({ ...newTask, [e.target.name]: e.target.value });
+    setNewTask({ ...newTask, [e.target.name]: e.target.name == 'time' ? new Date(e.target.value).toISOString().slice(0, 16) : e.target.value });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -80,9 +78,10 @@ const App: React.FC = () => {
   };
 
   const handleEdit = (task: Task) => {
+    console.log(task.time)
     const formattedTime = task.time
-      ? convertToISOFormat(new Date(task.time).toLocaleString().slice(0, 16))
-      : "";
+    ? convertToISOFormat(new Date(task.time).toLocaleString().slice(0, 16))
+    : "";
     console.log(task.time);
     console.log(formattedTime);
     setEditingTask(task);

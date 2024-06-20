@@ -24,6 +24,9 @@ USER appuser
 # Build the TypeScript code
 RUN npm run build
 
+RUN echo '[]' > dist/taskLogs.json
+
+
 # Expose the port the app runs on
 EXPOSE 3000
 

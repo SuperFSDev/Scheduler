@@ -37,7 +37,7 @@ app.get("/logs", (req, res) => {
 });
 
 mongoose
-  .connect("mongodb://0.0.0.0:27017/taskScheduler")
+  .connect("mongodb://mongo:27017/taskScheduler")
   .then(() => {
     console.log("Connected to MongoDB");
   })
